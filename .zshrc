@@ -1,3 +1,18 @@
+# install brew
+if ! command -v brew >/dev/null 2>&1; then
+  /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+  # Add brew to PATH for this session
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+  # Persist it for future shells
+  {
+    echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"'
+  } >> ~/.zshrc
+else
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
