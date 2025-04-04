@@ -1,14 +1,20 @@
 # install brew
 if ! command -v brew >/dev/null 2>&1; then
-  /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  echo "🛠 Installing Homebrew..."
 
-  # Add brew to PATH for this session
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-  # Persist it for future shells
-  {
-    echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"'
-  } >> ~/.zshrc
+  # Check if the brew binary now exists
+  if [[ -x "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+    # Avoid duplicate lines in .zshrc
+    if ! grep -q 'brew shellenv' ~/.zshrc; then
+      echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.zshrc
+    fi
+  else
+    echo "❌ Homebrew install failed or is not in expected location"
+  fi
 else
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
