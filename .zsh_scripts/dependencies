@@ -1,0 +1,37 @@
+#! bin/zsh
+
+if ! command -v brew >/dev/null 2>&1; then
+  /bin/zsh -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+  # Add brew to PATH for this session
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+  # Persist it for future shells
+  {
+    echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"'
+  } >> ~/.zshrc
+else
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
+BREW_DEPENDENCIES=(
+  git
+  neovim
+  ansible
+  curl
+  wget
+  docker
+  docker-compose
+  gnupg
+  mpv
+  neovim
+  zsh-autocomplete
+  zsh-completions
+  zsh-syntax-highlighting
+)
+
+for pkg in "${BREW_DEPENDENCIES[@]}"; do
+  if ! brew list --formula | grep -q "^$pkg\$"; then
+    brew install "$pkg"
+  fi
+done
