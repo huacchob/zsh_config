@@ -13,6 +13,28 @@ else
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
+BREW_DEPENDENCIES=(
+  git
+  neovim
+  ansible
+  curl
+  wget
+  docker
+  docker-compose
+  gnupg
+  mpv
+  neovim
+  zsh-autocomplete
+  zsh-completions
+  zsh-syntax-highlighting
+)
+
+for pkg in "${BREW_DEPENDENCIES[@]}"; do
+  if ! brew list --formula | grep -q "^$pkg\$"; then
+    brew install "$pkg"
+  fi
+done
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
