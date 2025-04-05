@@ -1,3 +1,10 @@
+# Increasing file deescripto size
+current_limit=$(ulimit -n)
+
+if [[ "$current_limit" -lt 8192 ]]; then
+  ulimit -n 65535
+fi
+
 # install brew
 if ! command -v brew >/dev/null 2>&1; then
   echo "🛠 Installing Homebrew..."
