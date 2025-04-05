@@ -124,14 +124,6 @@ if [[ "$current_limit" -lt 8192 ]]; then
 fi
 
 # Bash Scripts
-CONFIG_DIR="$HOME/.bash_scripts"
-
-# Check if the directory exists and has at least one file
-if [[ -d $CONFIG_DIR && -n ${CONFIG_DIR}/*(#qN) ]]; then
-  for file in $CONFIG_DIR/*(.N); do
-    source "$file"
-  done
-fi
 
 # Install zsh
 if ! command -v zsh >/dev/null 2>&1 && [[ ! -f ~/.zsh_installed_marker ]]; then
