@@ -3,20 +3,10 @@ if ! command -v brew >/dev/null 2>&1; then
   echo "🛠 Installing Homebrew..."
 
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-  # Check if the brew binary now exists
-  if [[ -x "/home/linuxbrew/.linuxbrew/bin/brew" ]]; then
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
-    # Avoid duplicate lines in .zshrc
-    if ! grep -q 'brew shellenv' ~/.zshrc; then
-      echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"' >> ~/.zshrc
-    fi
-  else
-    echo "❌ Homebrew install failed or is not in expected location"
-  fi
-else
   eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+  sudo apt-get install build-essential
+  brew install gcc
+  
 fi
 
 BREW_DEPENDENCIES=(
