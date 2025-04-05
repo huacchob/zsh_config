@@ -47,8 +47,17 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions" && \
-git clone https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
+# Declare array of plugin names
+zsh_plugins=("zsh-autosuggestions" "zsh-syntax-highlighting")
+
+# Loop through each plugin
+for plugin in "${zsh_plugins[@]}"; do
+  plugin_dir="$ZSH_CUSTOM/plugins/$plugin"
+  if [[ ! -d "$plugin_dir" ]]; then
+    echo "📦 Installing $plugin..."
+    git clone "https://github.com/zsh-users/$plugin" "$plugin_dir"
+  fi
+done
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
