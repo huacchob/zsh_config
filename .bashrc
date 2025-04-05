@@ -127,6 +127,6 @@ fi
 
 # Install zsh
 if ! command -v zsh >/dev/null 2>&1 && [[ ! -f ~/.zsh_installed_marker ]]; then
-  bash "$HOME/.bash_scripts/install_zsh.sh"
+  bash "$HOME/install_zsh.sh"
   touch ~/.zsh_installer_marker
 fi
