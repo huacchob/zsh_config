@@ -116,9 +116,11 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Custom
-if [ -d "/mnt/c/Users/huacc/Downloads" ]; then
-  cd /mnt/c/Users/huacc/Downloads
+# Increasing file description size
+current_limit=$(ulimit -n)
+
+if [[ "$current_limit" -lt 8192 ]]; then
+  ulimit -n 65535
 fi
 
 # Install zsh
