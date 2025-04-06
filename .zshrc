@@ -4,24 +4,27 @@ ulimit -n 65535
 # Powerlevel10k instant prompt config - avoid visual issues
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
 
-# Brew locations
-mac_arm_brew="/opt/homebrew/bin/brew"
-mac_intel_brew="/usr/local/bin/brew"
-linux_brew="/home/linuxbrew/.linuxbrew/bin/brew"
+# Detect the system
+if [[ "$(uname -s)" == "Linux" ]]; then
+  brew_path="/home/linuxbrew/.linuxbrew/bin/brew"
+elif [[ "$(uname -s)" == "Darwin" ]]; then
+  # Detect macOS architecture
+  if [[ "$(uname -m)" == "arm64" ]]; then
+    brew_path="/opt/homebrew/bin/brew"
+  else
+    brew_path="/usr/local/bin/brew"
+  fi
+fi
 
 # --- Homebrew Setup ---
-if [[ ! -e $mac_arm_brew || ! -e $mac_intel_brew || ! -e $linux_brew ]]; then
+if [[ ! -e "$brew_path" ]]; then
   echo "Homebrew not found. Installing Homebrew..."
   NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 # Dynamically set brew path based on OS and architecture
-if [[ -d $mac_arm_brew ]]; then
-  eval "$($mac_arm_brew shellenv)"            # macOS ARM
-elif [[ -d $mac_intel_brew ]]; then
-  eval "$($mac_intel_brew shellenv)"               # macOS Intel
-else
-  eval "$($linux_brew shellenv)"  # Linux
+if [[ -e $brew_path ]]; then
+  eval "$($brew_path shellenv)"
 fi
 
 # Brew dependencies
