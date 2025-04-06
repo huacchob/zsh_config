@@ -47,12 +47,12 @@ esac
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+        # We have color support; assume it's compliant with Ecma-48
+        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+        # a case would tend to support setf rather than setaf.)
+        color_prompt=yes
     else
-	color_prompt=
+        color_prompt=
     fi
 fi
 
@@ -117,11 +117,7 @@ if ! shopt -oq posix; then
 fi
 
 # Increasing file description size
-current_limit=$(ulimit -n)
-
-if [[ "$current_limit" -lt 8192 ]]; then
-  ulimit -n 65535
-fi
+ulimit -n 65535
 
 # Bash Scripts
 
