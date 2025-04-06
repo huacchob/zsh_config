@@ -31,6 +31,25 @@ for pkg in "${BREW_DEPENDENCIES[@]}"; do
   fi
 done
 
+# Install meslo fonts
+FONT_DIR="$HOME/.local/share/fonts"
+FONT_CHECK="$FONT_DIR/MesloLGLNerdFontMono-Regular.ttf"
+ZIP_URL="https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/Meslo.zip"
+ZIP_NAME="Meslo.zip"
+
+# Check if the font is already installed
+if [[ ! -f "$FONT_CHECK" ]]; then
+  echo "📦 Installing JetBrainsMono Nerd Font..."
+  mkdir -p "$FONT_DIR" && \
+  wget -q -P "$FONT_DIR" "$ZIP_URL" && \
+  cd "$FONT_DIR" && \
+  unzip -o "$ZIP_NAME" && \
+  rm "$ZIP_NAME" && \
+  if command -v fc-cache >/dev/null 2>&1; then
+    fc-cache -fv "$FONT_DIR"
+  fi
+fi
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
