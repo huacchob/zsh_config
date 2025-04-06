@@ -7,7 +7,7 @@ mac_intel_brew="/usr/local/bin/brew"
 linux_brew="/home/linuxbrew/.linuxbrew/bin/brew"
 
 # --- Homebrew Setup ---
-if [[ ! -d $mac_arm_brew && ! -d $mac_intel_brew && ! -d $linux_brew ]] ; then
+if [[ ! -e $mac_arm_brew || ! -e $mac_intel_brew || ! -e $linux_brew ]]; then
   echo "Homebrew not found. Installing Homebrew..."
   NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
@@ -23,6 +23,7 @@ fi
 
 # Brew dependencies
 BREW_DEPENDENCIES=(
+  gcc
   git
   neovim
   ansible
@@ -33,6 +34,8 @@ BREW_DEPENDENCIES=(
   gnupg
   mpv
   neovim
+  htop
+  bat
   zsh-autocomplete
   zsh-completions
   zsh-syntax-highlighting
@@ -52,7 +55,6 @@ ZIP_NAME="Meslo.zip"
 
 # Check if the font is already installed
 if [[ ! -f "$FONT_CHECK" ]]; then
-  echo "📦 Installing JetBrainsMono Nerd Font..."
   mkdir -p "$FONT_DIR" && \
   wget -q -P "$FONT_DIR" "$ZIP_URL" && \
   cd "$FONT_DIR" && \
@@ -68,6 +70,7 @@ fi
 # confirmations, etc.) must go above this block; everything else may go below.
 
 # --- Powerlevel10k Installation ---
+typeset -g POWERLEVEL9K_MODE='nerdfont-complete'
 ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
 if [[ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ]]; then
   echo "🎨 Installing Powerlevel10k theme..."
@@ -206,10 +209,3 @@ fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
