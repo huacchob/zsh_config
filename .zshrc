@@ -1,14 +1,18 @@
 # install brew
 if ! command -v brew >/dev/null 2>&1; then
-  echo "🛠 Installing Homebrew..."
+  echo "Homebrew not found. Installing Homebrew..."
 
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-  sudo apt-get install build-essential
-  brew install gcc
-  
+  NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+  # Update shell environment for Homebrew (Apple Silicon vs Intel)
+  if [[ -d "/opt/homebrew/bin" ]]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)"
+  elif [[ -d "/usr/local/bin" ]]; then
+    eval "$(/usr/local/bin/brew shellenv)"
+  fi
 fi
 
+# Brew dependencies
 BREW_DEPENDENCIES=(
   git
   neovim
