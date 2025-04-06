@@ -20,6 +20,7 @@ alias grep="grep --color=auto"
 alias vi="nvim"
 alias vim="nvim"
 alias editor="nvim"
+alias cat="bat --color=always --theme=Dracula --style=full --paging=always"
 
 # Search command line history
 alias h="history | grep "
