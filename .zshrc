@@ -1,16 +1,24 @@
+# Powerlevel10k instant prompt config - avoid visual issues
+typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
+
+# Brew locations
+mac_arm_brew="/opt/homebrew/bin/brew"
+mac_intel_brew="/usr/local/bin/brew"
+linux_brew="/home/linuxbrew/.linuxbrew/bin/brew"
+
 # --- Homebrew Setup ---
-if ! command -v brew >/dev/null 2>&1; then
+if [[ ! -d $mac_arm_brew && ! -d $mac_intel_brew && ! -d $linux_brew ]] ; then
   echo "Homebrew not found. Installing Homebrew..."
   NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
 # Dynamically set brew path based on OS and architecture
-if [[ -d "/opt/homebrew/bin" ]]; then
-  eval "$(/opt/homebrew/bin/brew shellenv)"            # macOS ARM
-elif [[ -d "/usr/local/bin" ]]; then
-  eval "$(/usr/local/bin/brew shellenv)"               # macOS Intel
-elif [[ -d "/home/linuxbrew/.linuxbrew/bin" ]]; then
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"  # Linux
+if [[ -d $mac_arm_brew ]]; then
+  eval "$($mac_arm_brew shellenv)"            # macOS ARM
+elif [[ -d $mac_intel_brew ]]; then
+  eval "$($mac_intel_brew shellenv)"               # macOS Intel
+else
+  eval "$($linux_brew shellenv)"  # Linux
 fi
 
 # Brew dependencies
@@ -66,7 +74,6 @@ if [[ ! -d "$ZSH_CUSTOM/themes/powerlevel10k" ]]; then
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git "$ZSH_CUSTOM/themes/powerlevel10k"
 fi
 
-typeset -g POWERLEVEL9K_INSTANT_PROMPT=quiet
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
@@ -199,5 +206,10 @@ fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
