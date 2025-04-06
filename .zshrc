@@ -1,15 +1,16 @@
-# install brew
+# --- Homebrew Setup ---
 if ! command -v brew >/dev/null 2>&1; then
   echo "Homebrew not found. Installing Homebrew..."
-
   NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
 
-  # Update shell environment for Homebrew (Apple Silicon vs Intel)
-  if [[ -d "/opt/homebrew/bin" ]]; then
-    eval "$(/opt/homebrew/bin/brew shellenv)"
-  elif [[ -d "/usr/local/bin" ]]; then
-    eval "$(/usr/local/bin/brew shellenv)"
-  fi
+# Dynamically set brew path based on OS and architecture
+if [[ -d "/opt/homebrew/bin" ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"            # macOS ARM
+elif [[ -d "/usr/local/bin" ]]; then
+  eval "$(/usr/local/bin/brew shellenv)"               # macOS Intel
+elif [[ -d "/home/linuxbrew/.linuxbrew/bin" ]]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"  # Linux
 fi
 
 # Brew dependencies
@@ -198,3 +199,5 @@ fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
