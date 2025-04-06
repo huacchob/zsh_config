@@ -1,3 +1,6 @@
+# Configure open file
+ulimit -n 65535
+
 # Powerlevel10k instant prompt config - avoid visual issues
 typeset -g POWERLEVEL9K_INSTANT_PROMPT=off
 
