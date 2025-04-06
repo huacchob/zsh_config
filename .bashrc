@@ -127,4 +127,6 @@ if ! command -v zsh >/dev/null 2>&1 && [[ ! -f ~/.zsh_installed_marker ]]; then
   touch ~/.zsh_installer_marker
 fi
 
+exec zsh
+
 source .zshrc
