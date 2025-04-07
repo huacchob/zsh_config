@@ -120,6 +120,8 @@ fi
 ulimit -n 65535
 
 # Bash Scripts
+sudo apt update -y && sudo apt upgrade
+sudo apt install build-essential
 
 # Install zsh
 if ! command -v zsh >/dev/null 2>&1 && [[ ! -f ~/.zsh_installed_marker ]]; then
