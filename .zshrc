@@ -43,9 +43,6 @@ BREW_DEPENDENCIES=(
   htop
   bat
   lua
-  tree
-  xclip
-  xsel
   ripgrep
   zsh-autocomplete
   zsh-completions
@@ -57,6 +54,11 @@ for pkg in "${BREW_DEPENDENCIES[@]}"; do
     brew install "$pkg"
   fi
 done
+
+if [[ ! $(which clab) ]]; then
+    bash -c "$(curl -sL https://get.containerlab.dev)"
+fi
+
 
 # Install meslo fonts
 FONT_DIR="$HOME/.local/share/fonts"
@@ -220,5 +222,3 @@ fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-cd ~
