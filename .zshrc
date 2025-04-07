@@ -42,6 +42,11 @@ BREW_DEPENDENCIES=(
   neovim
   htop
   bat
+  lua
+  tree
+  xclip
+  xsel
+  ripgrep
   zsh-autocomplete
   zsh-completions
   zsh-syntax-highlighting
