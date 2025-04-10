@@ -1,4 +1,5 @@
 # Configure open file
+export PATH="$HOME/.local/bin:$PATH"
 ulimit -n 65535
 
 # Detect the system
@@ -91,7 +92,7 @@ if [[ -d $CONFIG_DIR && -n ${CONFIG_DIR}/*(#qN) ]]; then
 fi
 
 # --- Oh-my-posh Installation ---
-if [[ ! $(which oh-my-posh) ]]; then
+if ! command -v oh-my-posh &> /dev/null 2>&1; then
     curl -s https://ohmyposh.dev/install.sh | bash -s
 fi
 eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/zen.toml)"
