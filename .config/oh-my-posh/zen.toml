@@ -12,28 +12,44 @@ final_space = true
   background = 'transparent'
   foreground_templates = ['{{if gt .Code 0}}red{{end}}', '{{if eq .Code 0}}magenta{{end}}']
 
+# ▶ LEFT SIDE (main prompt)
 [[blocks]]
   type = 'prompt'
   alignment = 'left'
   newline = true
 
+  # → Working directory
   [[blocks.segments]]
+    type = 'path'
+    style = 'plain'
     template = '{{ .Path }}'
     foreground = 'blue'
     background = 'transparent'
-    type = 'path'
-    style = 'plain'
 
     [blocks.segments.properties]
       cache_duration = 'none'
       style = 'full'
 
+  # → Active Python virtualenv (Poetry, venv, etc.)
   [[blocks.segments]]
+    type = 'python'
+    style = 'plain'
+    template = ' ({{ .Venv }})'
+    foreground = 'green'
+    background = 'transparent'
+
+    [blocks.segments.properties]
+      display_mode = 'context'
+      show_virtual_env = true
+      python_binary = 'python3'
+
+  # → Git branch/status
+  [[blocks.segments]]
+    type = 'git'
+    style = 'plain'
     template = ' {{ .HEAD }}{{ if or (.Working.Changed) (.Staging.Changed) }}*{{ end }} <cyan>{{ if gt .Behind 0 }}⇣{{ end }}{{ if gt .Ahead 0 }}⇡{{ end }}</>'
     foreground = 'p:grey'
     background = 'transparent'
-    type = 'git'
-    style = 'plain'
 
     [blocks.segments.properties]
       branch_icon = ''
@@ -41,31 +57,34 @@ final_space = true
       commit_icon = '@'
       fetch_status = true
 
+# ▶ RIGHT SIDE (runtime info)
 [[blocks]]
   type = 'rprompt'
   overflow = 'hidden'
 
+  # → Execution time
   [[blocks.segments]]
+    type = 'executiontime'
+    style = 'plain'
     template = '{{ .FormattedMs }}'
     foreground = 'yellow'
     background = 'transparent'
-    type = 'executiontime'
-    style = 'plain'
 
     [blocks.segments.properties]
       cache_duration = 'none'
       threshold = 5000
 
+# ▶ NEWLINE FOR TYPING
 [[blocks]]
   type = 'prompt'
   alignment = 'left'
   newline = true
 
   [[blocks.segments]]
-    template = '❯'
-    background = 'transparent'
     type = 'text'
     style = 'plain'
+    template = '❯'
+    background = 'transparent'
     foreground_templates = ['{{if gt .Code 0}}red{{end}}', '{{if eq .Code 0}}magenta{{end}}']
 
     [blocks.segments.properties]

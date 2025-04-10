@@ -1,4 +1,6 @@
+require("api")
+require("global_vars")
+require("keymaps")
+require("commands")
+require("options")
 require("config.lazy")
-require("key_maps")
-require("vim_commands")
-vim.g.mapleader = " "
