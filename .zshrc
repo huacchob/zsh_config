@@ -29,7 +29,9 @@ fi
 BREW_DEPENDENCIES=(
     gcc
     git
-    neovim
+    node
+    rust
+    xclip
     ansible
     curl
     wget
@@ -37,7 +39,6 @@ BREW_DEPENDENCIES=(
     docker-compose
     gnupg
     mpv
-    neovim
     htop
     bat
     lua
@@ -109,4 +110,15 @@ fi
 if ! command -v oh-my-posh &> /dev/null 2>&1; then
     curl -s https://ohmyposh.dev/install.sh | bash -s
 fi
+
+if ! command -v nvim &> /dev/null 2>&1; then
+    brew install nvim --HEAD
+fi
+
+if ! command -v poery &> /dev/null 2>&1: then
+    curl -sSL https://install.python-poetry.org | python3 -
+    poetry self add poetry-plugin-shell
+fi
+
+
 eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/zen.toml)"
