@@ -42,9 +42,6 @@ BREW_DEPENDENCIES=(
     bat
     lua
     ripgrep
-    zsh-autocomplete
-    zsh-completions
-    zsh-syntax-highlighting
 )
 
 for pkg in "${BREW_DEPENDENCIES[@]}"; do
@@ -78,7 +75,24 @@ fi
 
 export ZSH="$HOME/.oh-my-zsh"
 
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+# --- Auto-install Oh My Zsh Plugins if Missing ---
+ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
+OMZ_PLUGINS_DIR="$ZSH_CUSTOM/plugins"
+OMZ_GITHUB_PATH="https://github.com/zsh-users/"
+OMZ_PLUGINS=(
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+    zsh-completions
+)
+
+for plugin in "${OMZ_PLUGINS[@]}"; do
+    if [[ ! -d "$OMZ_PLUGINS_DIR/$plugin" ]]; then
+        git clone --depth=1 "$OMZ_GITHUB_PATH/$plugin" "$OMZ_PLUGINS_DIR/$plugin"
+    fi
+done
+
+BASE_PLUGINS=(git)
+plugins=("${BASE_PLUGINS[@]}" "${OMZ_PLUGINS[@]}")
 
 source $ZSH/oh-my-zsh.sh
 
