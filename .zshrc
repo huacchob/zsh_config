@@ -115,7 +115,7 @@ if ! command -v nvim &> /dev/null 2>&1; then
     brew install nvim --HEAD
 fi
 
-if ! command -v poery &> /dev/null 2>&1: then
+if ! command -v poetry &> /dev/null 2>&1; then
     curl -sSL https://install.python-poetry.org | python3 -
     poetry self add poetry-plugin-shell
 fi
