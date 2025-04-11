@@ -38,3 +38,7 @@ alias atree="tree -AC --filesfirst -a"
 alias tmux="tmux -f ~/.config/tmux.conf"
 alias tmuxk="tmux kill-session -t"
 alias tmuxs="tmux switch -t"
+alias tmuxsu='tmux split-window -v -c "#{pane_current_path}"; tmux select-pane -U'
+alias tmuxsd='tmux split-window -v -c "#{pane_current_path}"; tmux select-pane -D'
+alias tmuxsl='tmux split-window -h -c "#{pane_current_path}"; tmux select-pane -L'
+alias tmuxsr='tmux split-window -h -c "#{pane_current_path}"; tmux select-pane -R'
