@@ -33,3 +33,8 @@ alias topcpu="/bin/ps -eo pcpu,pid,user,args | sort -k 1 -r | head -10"
 alias f="find . | grep "
 alias tree="tree -AC --filesfirst"
 alias atree="tree -AC --filesfirst -a"
+
+# Tmux
+alias tmux="tmux -f ~/.config/tmux.conf"
+alias tmuxk="tmux kill-session -t"
+alias tmuxs="tmux switch -t"

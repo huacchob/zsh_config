@@ -37,6 +37,7 @@ fi
 # Brew dependencies
 BREW_DEPENDENCIES=(
     gcc
+    tmux
     tree
     git
     node

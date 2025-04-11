@@ -1,0 +1,16 @@
+tmuxc() {
+    if [ -z "$1" ]; then
+        echo "❗ Usage: tmuxc <session-name>"
+        return 1
+    fi
+
+    if [ -n "$TMUX" ]; then
+        # Inside tmux — switch client to the new session
+        tmux new-session -d -s "$1" 2>/dev/null
+        tmux switch-client -t "$1"
+    else
+        # Outside tmux — create or attach
+        tmux new-session -As "$1"
+    fi
+}
+
