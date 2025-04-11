@@ -43,7 +43,7 @@ local M = {
                 "dockerls",
                 "docker_compose_language_service",
                 "taplo",
-                "typescript-language-server",
+                "ts_ls",
                 "jinja_lsp",
                 "gopls",
                 "terraformls",

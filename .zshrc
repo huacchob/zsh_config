@@ -2,6 +2,15 @@
 export PATH="$HOME/.local/bin:$PATH"
 ulimit -n 65535
 
+# WSL specific configs
+if ! command -v wslview &> /dev/null 2>&1; then
+    sudo apt install wslu -y
+fi
+if ! command -v xdg-open &> /dev/null 2>&1; then
+    sudo apt install xdg-utils
+fi
+export BROWSER=wslview
+
 # Detect the system
 if [[ "$(uname -s)" == "Linux" ]]; then
     brew_path="/home/linuxbrew/.linuxbrew/bin/brew"
@@ -52,7 +61,7 @@ for pkg in "${BREW_DEPENDENCIES[@]}"; do
     fi
 done
 
-if [[ ! $(which clab) ]]; then
+if ! command -v clab &> /dev/null 2>&1; then
     bash -c "$(curl -sL https://get.containerlab.dev)"
 fi
 

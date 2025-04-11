@@ -37,7 +37,7 @@ vim.keymap.set("n", "<leader>w", function()
     vim.fn.winrestview(view)                -- Restore scroll/view
     vim.api.nvim_win_set_cursor(0, pos)     -- Restore cursor position
 end, { desc = "Save file without jumping to top" })
-vim.keymap.set("n", "<leader>q", ":q<cr>")
+vim.keymap.set("n", "<leader>q", ":q!<cr>")
 vim.keymap.set("n", "<leader>wq", ":wq<cr>")
 
 -- Horizontal moving in terminal
