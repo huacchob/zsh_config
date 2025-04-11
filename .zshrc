@@ -28,6 +28,7 @@ fi
 # Brew dependencies
 BREW_DEPENDENCIES=(
     gcc
+    tree
     git
     node
     rust
