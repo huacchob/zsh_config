@@ -14,3 +14,12 @@ tmuxc() {
     fi
 }
 
+tmux() {
+  local config=~/.config/tmux.conf
+  if command tmux -f "$config" has-session 2>/dev/null; then
+    command tmux -f "$config" attach-session
+  else
+    command tmux -f "$config" new-session
+  fi
+}
+
