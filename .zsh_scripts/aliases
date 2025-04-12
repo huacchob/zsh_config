@@ -35,6 +35,23 @@ alias tree="tree -AC --filesfirst"
 alias atree="tree -AC --filesfirst -a"
 
 # Tmux
+alias tmux="tmux -f ~/.config/tmux/tmux.conf"
+tmuxc() {
+    if [ -z "$1" ]; then
+        echo "❗ Usage: tmuxc <session-name>"
+        return 1
+    fi
+
+    if [ -n "$TMUX" ]; then
+        # Inside tmux — switch client to the new session
+        tmux new-session -d -s "$1" 2>/dev/null
+        tmux switch-client -t "$1"
+    else
+        # Outside tmux — create or attach
+        tmux new-session -As "$1"
+    fi
+}
+
 alias tmuxk="tmux kill-session -t"
 alias tmuxs="tmux switch -t"
 alias tmuxsu='tmux split-window -v -c "#{pane_current_path}"; tmux select-pane -U'
