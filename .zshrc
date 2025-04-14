@@ -126,6 +126,11 @@ if ! command -v nvim &> /dev/null 2>&1; then
     brew install nvim --HEAD
 fi
 
+if ! command -v ollama &> /dev/null 2>&1; then
+    curl -fsSL https://ollama.com/install.sh | sh
+fi
+export OLLAMA_HOST=127.0.0.1:11430
+
 if ! command -v poetry &> /dev/null 2>&1; then
     curl -sSL https://install.python-poetry.org | python3 -
     poetry self add poetry-plugin-shell
