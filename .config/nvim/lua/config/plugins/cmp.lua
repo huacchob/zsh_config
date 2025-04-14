@@ -14,7 +14,7 @@ local M = { -- Autocompletion
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
-        "hrsh7th/cmp-cmdline", -- 🔥 Enables : and / completion
+        "hrsh7th/cmp-cmdline",
         "rafamadriz/friendly-snippets",
     },
     config = function()
@@ -52,7 +52,6 @@ local M = { -- Autocompletion
             TypeParameter = "󰊄",
         }
 
-        -- Insert mode completion
         cmp.setup({
             snippet = {
                 expand = function(args)
@@ -114,9 +113,9 @@ local M = { -- Autocompletion
             },
         })
 
-        -- Command-line mode completion (":")
+        -- Cmdline mode (":")
         cmp.setup.cmdline(":", {
-            mapping = cmp.mapping.preset.cmdline({
+            mapping = {
                 ["<Tab>"] = {
                     c = function()
                         cmp.select_next_item()
@@ -143,26 +142,30 @@ local M = { -- Autocompletion
                         select = true,
                     }),
                 },
-            }),
-            sources = cmp.config.sources({
-                { name = "path" },
-                { name = "cmdline" },
-            }),
-            sorting = {
-                comparators = {
-                    cmp.config.compare.sort_text, -- sort by textual similarity
-                    cmp.config.compare.score,
-                    cmp.config.compare.offset,
-                    cmp.config.compare.exact,
-                    cmp.config.compare.length,
-                    cmp.config.compare.order,
+                ["<C-e>"] = {
+                    c = function(fallback)
+                        if cmp.visible() then
+                            cmp.close()
+                        else
+                            fallback()
+                        end
+                    end,
+                },
+                ["<C-c>"] = {
+                    c = function()
+                        cmp.close()
+                        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-c>", true, false, true), "n", false)
+                    end,
                 },
             },
+            sources = cmp.config.sources({
+                { name = "cmdline" }, -- Removed "path" to stop annoying `:wq!lua` suggestions
+            }),
         })
 
-        -- Search mode completion ("/")
+        -- Search mode ("/")
         cmp.setup.cmdline("/", {
-            mapping = cmp.mapping.preset.cmdline({
+            mapping = {
                 ["<Tab>"] = {
                     c = function()
                         cmp.select_next_item()
@@ -189,7 +192,22 @@ local M = { -- Autocompletion
                         select = true,
                     }),
                 },
-            }),
+                ["<C-e>"] = {
+                    c = function(fallback)
+                        if cmp.visible() then
+                            cmp.close()
+                        else
+                            fallback()
+                        end
+                    end,
+                },
+                ["<C-c>"] = {
+                    c = function()
+                        cmp.close()
+                        vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-c>", true, false, true), "n", false)
+                    end,
+                },
+            },
             sources = {
                 { name = "buffer" },
             },
