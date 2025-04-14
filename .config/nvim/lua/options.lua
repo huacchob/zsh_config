@@ -40,6 +40,7 @@ vim.opt.colorcolumn = "80,120"
 vim.opt.showtabline = 2
 vim.opt.equalalways = false
 vim.opt.wrap = false
+vim.opt.textwidth = 79
 
 -- English Language
 vim.opt.autoread = true

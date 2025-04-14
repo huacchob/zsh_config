@@ -13,37 +13,6 @@ local M = {
         })
         -- require("mini.animate").setup()
         require("mini.pairs").setup()
-        require("mini.clue").setup({
-            triggers = {
-                -- Leader key
-                { mode = "n", keys = "<Leader>" },
-                { mode = "x", keys = "<Leader>" },
-
-                -- Built-in things like `g`, `z`, etc.
-                { mode = "n", keys = "g" },
-                { mode = "n", keys = "z" },
-                { mode = "n", keys = "[" },
-                { mode = "n", keys = "]" },
-            },
-
-            clues = {
-                -- Custom descriptions
-                { mode = "n", keys = "<Leader>f", desc = "Find" },
-                { mode = "n", keys = "<Leader>c", desc = "Code actions" },
-                { mode = "n", keys = "<Leader>b", desc = "Buffers" },
-                { mode = "n", keys = "<Leader>w", desc = "Save file" },
-            },
-
-            window = {
-                config = {
-                    width = "auto",
-                    height = 20,
-                    border = "rounded",
-                    row = "auto",
-                    col = "auto",
-                },
-            },
-        })
         local mode_hl = {
             NORMAL = "MiniStatuslineModeNormal",
             INSERT = "MiniStatuslineModeInsert",
