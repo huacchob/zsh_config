@@ -58,3 +58,20 @@ alias tmuxsu='tmux split-window -v -c "#{pane_current_path}"; tmux select-pane -
 alias tmuxsd='tmux split-window -v -c "#{pane_current_path}"; tmux select-pane -D'
 alias tmuxsl='tmux split-window -h -c "#{pane_current_path}"; tmux select-pane -L'
 alias tmuxsr='tmux split-window -h -c "#{pane_current_path}"; tmux select-pane -R'
+
+# tldr
+alias man="tldr"
+
+# eza
+alias ls="eza -alh"
+
+# zoxide
+zam() {
+    local dir="$1"
+    if [ -d "$dir" ]; then
+        zoxide add "$dir" && cd "$dir"
+    else
+        echo "Directory not found: $dir"
+    fi
+}
+
