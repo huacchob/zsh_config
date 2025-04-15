@@ -16,6 +16,7 @@ local M = {
                 "jinja",
                 "bash",
                 "regex",
+                "gitignore",
             },
             auto_install = true,
             sync_install = false,
