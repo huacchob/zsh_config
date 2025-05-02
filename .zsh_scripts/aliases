@@ -61,6 +61,7 @@ alias tmuxsr='tmux split-window -h -c "#{pane_current_path}"; tmux select-pane -
 
 # tldr
 alias man="tldr"
+alias tldr="tldr"
 
 # eza
 alias ls="eza -alh"
@@ -75,3 +76,22 @@ zam() {
     fi
 }
 
+# Docker
+alias docker="sudo docker"
+dshell() { docker exec -it "$1" bash; }
+dckill() {
+    local cname="$1"
+
+    if [ -z "$cname" ]; then
+        return 1
+    fi
+
+    docker stop "$cname"
+
+    docker rm "$cname"
+}
+alias dlog="docker logs -f"
+alias dps="docker ps -a --format 'table {{.ID}}\t{{.Names}}\t{{.Status}}\t{{.Ports}}'"
+
+# IP Aliases
+alias localip="ip a | grep -E 'inet .* scope global eth0'"

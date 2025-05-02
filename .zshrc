@@ -54,7 +54,6 @@ BREW_DEPENDENCIES=(
     bat
     lua
     ripgrep
-    tldr
     eza
     zoxide
 )
@@ -128,6 +127,12 @@ fi
 if ! command -v nvim &> /dev/null 2>&1; then
     brew install nvim --HEAD
 fi
+
+if ! command [ ! -e /home/huacc/.cargo/bin/tlrd ]; then
+    brew install tlrc
+    cargo install tlrc
+fi
+export PATH="$HOME/.cargo/bin/tlrd:$PATH"
 
 if ! command -v ollama &> /dev/null 2>&1; then
     curl -fsSL https://ollama.com/install.sh | sh
