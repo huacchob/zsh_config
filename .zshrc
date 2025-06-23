@@ -1,15 +1,19 @@
 # Configure open file
 export PATH="$HOME/.local/bin:$PATH"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
 ulimit -n 65535
 
 # WSL specific configs
-if ! command -v wslview &> /dev/null 2>&1; then
-    sudo apt install wslu -y
-fi
-if ! command -v xdg-open &> /dev/null 2>&1; then
-    sudo apt install xdg-utils
-fi
-export BROWSER=wslview
+# if ! command -v wslview &> /dev/null 2>&1; then
+#     sudo apt install wslu -y
+# fi
+# if ! command -v xdg-open &> /dev/null 2>&1; then
+#     sudo apt install xdg-utils
+# fi
+# export BROWSER=wslview
 
 # Detect the system
 if [[ "$(uname -s)" == "Linux" ]]; then
@@ -37,11 +41,8 @@ fi
 # Brew dependencies
 BREW_DEPENDENCIES=(
     gcc
-    tmux
     tree
     git
-    node
-    rust
     xclip
     ansible
     curl
@@ -56,6 +57,12 @@ BREW_DEPENDENCIES=(
     ripgrep
     eza
     zoxide
+    cmake
+    gh
+    inetutils
+    mtr
+    whois
+    nvim
 )
 
 for pkg in "${BREW_DEPENDENCIES[@]}"; do
@@ -124,20 +131,17 @@ if ! command -v oh-my-posh &> /dev/null 2>&1; then
     curl -s https://ohmyposh.dev/install.sh | bash -s
 fi
 
-if ! command -v nvim &> /dev/null 2>&1; then
-    brew install nvim --HEAD
-fi
-
 if ! command [ ! -e /home/huacc/.cargo/bin/tlrd ]; then
     brew install tlrc
     cargo install tlrc
 fi
 export PATH="$HOME/.cargo/bin/tlrd:$PATH"
 
-if ! command -v ollama &> /dev/null 2>&1; then
-    curl -fsSL https://ollama.com/install.sh | sh
-fi
-export OLLAMA_HOST=127.0.0.1:11430
+# Ollama
+# if ! command -v ollama &> /dev/null 2>&1; then
+#     curl -fsSL https://ollama.com/install.sh | sh
+# fi
+# export OLLAMA_HOST=127.0.0.1:11430
 
 if ! command -v poetry &> /dev/null 2>&1; then
     curl -sSL https://install.python-poetry.org | python3 -

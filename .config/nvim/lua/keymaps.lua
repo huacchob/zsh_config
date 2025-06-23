@@ -1,3 +1,4 @@
+
 -- local leader
 vim.g.maplocalleader = ","
 
@@ -85,3 +86,4 @@ vim.keymap.set("n", "<leader>to", ":tabnew<cr>", { desc = "Open new tab" })
 vim.keymap.set("n", "<leader>tc", ":tabclose<cr>", { desc = "Close current tab" })
 vim.keymap.set("n", "<leader>tn", ":tabnext<cr>", { desc = "Next tab" })
 vim.keymap.set("n", "<leader>tp", ":tabprevious<cr>", { desc = "Previous tab" })
+

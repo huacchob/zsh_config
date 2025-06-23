@@ -2,10 +2,11 @@
 
 # Aliases
 # Navigation
-alias windows="cd /mnt/c/Users/huacc/Downloads"
+# Windows
+# alias windows="cd /mnt/c/Users/huacc/Downloads"
 
 # Updates
-alias update="brew update && brew doctor && brew upgrade && brew upgrade --cask && brew cleanup -s && brew doctor"
+alias update="brew update && brew upgrade && brew upgrade --cask && brew cleanup -s && brew doctor"
 alias update-tools="curl -fsSL https://ollama.com/install.sh | sh && curl -sSL https://install.python-poetry.org | python3 -"
 
 # Commands

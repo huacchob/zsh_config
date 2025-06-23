@@ -1,0 +1,137 @@
+[user]
+    name = Carlos Huaccho
+    email = huaccho.carlos0612@gmail.com
+
+[commit]
+    verbose = true
+
+[core]
+    autocrlf = input
+    compression = 9
+    fsync = none
+    whitespace = error
+    preloadindex = true
+    editor = vim
+
+[alias]
+    st = status
+    ci = commit
+    co = checkout
+    br = branch
+    hist = log --graph --oneline --all --decorate
+    last = log -1 HEAD
+    type = cat-file -t
+    dump = cat-file -p
+    lg = log --graph --abbrev-commit --decorate --all --pretty=oneline
+
+[blame]
+    coloring = highlightRecent
+    date = relative
+
+[diff]
+    colorMoved = default
+    context = 3
+    renames = copies
+    interHunkContext = 10
+    tool = nvimdiff
+
+[merge]
+    conflictstyle = diff3
+    tool = nvimdiff
+
+[init]
+    defaultBranch = main
+
+[log]
+    abbrevCommit = true
+    graphColors = blue,yellow,cyan,magenta,green,red
+    date = relative
+
+[status]
+    branch = true
+    short = true
+    showStash = true
+    showUntrackedFiles = all
+
+[pager]
+    branch = false
+    tag = false
+    diff = diff-so-fancy | less --tabs=4 -RFX
+    log = diff-so-fancy | less --tabs=4 -RFX
+    show = diff-so-fancy | less --tabs=4 -RFX
+
+[push]
+    autoSetupRemote = true
+    default = current
+    followTags = true
+
+[pull]
+    rebase = true
+    default = current
+
+[submodule]
+    fetchJobs = 16
+
+[rebase]
+    autoStash = true
+    missingCommitsCheck = warn
+
+[pack]
+    threads = 0
+    windowMemory = 1g
+    packSizeLimit = 1g
+
+[transfer]
+    fsckObjects = true
+
+[receive]
+    fsckObjects = true
+
+[fetch]
+    fsckObjects = true
+
+[branch]
+    sort = -committerdate
+
+[tag]
+    sort = -taggerdate
+
+[color "blame"]
+    highlightRecent = black bold,1 year ago,white,1 month ago,default,7 days ago,blue
+
+[color "branch"]
+    current  = magenta
+    local    = default
+    remote   = yellow
+    upstream = green
+    plain    = blue
+
+[color "diff"]
+    meta       = black bold
+    frag       = magenta
+    context    = white
+    whitespace = yellow reverse
+    old        = red
+    new        = green
+
+[color.decorate]
+    HEAD = red
+    branch = blue
+    tag = yellow
+    remoteBranch = magenta
+
+[interactive]
+    diffFilter = diff-so-fancy --patch
+    singlekey = true
+
+[diff-so-fancy]
+    markEmptyLines = false
+    changeHunkIndicators = true
+    useUnicodeRuler = true
+
+[url "git@github.com:"]
+    insteadOf = "gh:"
+
+[url "git@github.com:huacchob/"]
+    insteadOf = "me:"
+
