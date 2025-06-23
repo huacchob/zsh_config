@@ -62,7 +62,7 @@ BREW_DEPENDENCIES=(
     inetutils
     mtr
     whois
-    nvim
+    neovim
 )
 
 for pkg in "${BREW_DEPENDENCIES[@]}"; do
