@@ -11,7 +11,7 @@
     fsync = none
     whitespace = error
     preloadindex = true
-    editor = vim
+    editor = nvim
 
 [alias]
     st = status
@@ -56,13 +56,13 @@
 [pager]
     branch = false
     tag = false
-    diff = diff-so-fancy | less --tabs=4 -RFX
-    log = diff-so-fancy | less --tabs=4 -RFX
-    show = diff-so-fancy | less --tabs=4 -RFX
+    diff = diff-so-fancy | less --tabs=4 -RF
+    log = diff-so-fancy | less --tabs=4 -RF
+    show = diff-so-fancy | less --tabs=4 -RF
 
 [push]
     autoSetupRemote = true
-    default = current
+    default = simple
     followTags = true
 
 [pull]
@@ -96,6 +96,9 @@
 [tag]
     sort = -taggerdate
 
+[rerere]
+    enabled = true
+
 [color "blame"]
     highlightRecent = black bold,1 year ago,white,1 month ago,default,7 days ago,blue
 
@@ -106,13 +109,20 @@
     upstream = green
     plain    = blue
 
+[color "diff-highlight"]
+    oldNormal = red bold
+    oldHighlight = red bold 52
+    newNormal = green bold
+    newHighlight = green bold 22
+
 [color "diff"]
-    meta       = black bold
-    frag       = magenta
-    context    = white
-    whitespace = yellow reverse
-    old        = red
-    new        = green
+    meta = yellow
+    frag = magenta bold
+    func = 146 bold
+    commit = blue bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
 
 [color.decorate]
     HEAD = red
