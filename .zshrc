@@ -64,6 +64,11 @@ BREW_DEPENDENCIES=(
     whois
     neovim
     diff-so-fancy
+    python@3.9
+    python@3.10
+    python@3.11
+    python@3.12
+    python@3.13
 )
 
 for pkg in "${BREW_DEPENDENCIES[@]}"; do
