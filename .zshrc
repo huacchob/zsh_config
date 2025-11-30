@@ -63,6 +63,13 @@ BREW_DEPENDENCIES=(
     mtr
     whois
     neovim
+    python@3.10
+    python@3.11
+    python@3.12
+    python@3.13
+    python@3.14
+    gemini-cli
+    ffmpeg
 )
 
 for pkg in "${BREW_DEPENDENCIES[@]}"; do
